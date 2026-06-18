@@ -1,0 +1,80 @@
+{
+  "name": "vscode-nomo",
+  "displayName": "Nomo",
+  "description": "Nomo language support: diagnostics, completion and syntax highlighting via the Nomo language server.",
+  "version": "0.1.0",
+  "publisher": "nomo-lang",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nomo-lang/vscode-nomo.git"
+  },
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Programming Languages"
+  ],
+  "activationEvents": [
+    "onLanguage:nomo"
+  ],
+  "main": "./dist/extension.js",
+  "contributes": {
+    "languages": [
+      {
+        "id": "nomo",
+        "aliases": [
+          "Nomo",
+          "nomo"
+        ],
+        "extensions": [
+          ".nomo"
+        ],
+        "configuration": "./language-configuration.json"
+      }
+    ],
+    "grammars": [
+      {
+        "language": "nomo",
+        "scopeName": "source.nomo",
+        "path": "./syntaxes/nomo.tmLanguage.json"
+      }
+    ],
+    "configuration": {
+      "title": "Nomo",
+      "properties": {
+        "nomo.lsp.path": {
+          "type": "string",
+          "default": "nomo-lsp",
+          "description": "Path to the nomo-lsp language server executable. Defaults to looking it up on PATH."
+        },
+        "nomo.trace.server": {
+          "type": "string",
+          "enum": [
+            "off",
+            "messages",
+            "verbose"
+          ],
+          "default": "off",
+          "description": "Trace the communication between VS Code and the Nomo language server."
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run build",
+    "build": "esbuild src/extension.ts --bundle --outfile=dist/extension.js --external:vscode --format=cjs --platform=node",
+    "watch": "npm run build -- --sourcemap --watch",
+    "package": "vsce package"
+  },
+  "dependencies": {
+    "vscode-languageclient": "^9.0.1"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "@types/vscode": "^1.75.0",
+    "@vscode/vsce": "^3.0.0",
+    "esbuild": "^0.28.1",
+    "typescript": "^5.4.0"
+  }
+}

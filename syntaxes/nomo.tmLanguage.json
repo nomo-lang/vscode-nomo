@@ -1,0 +1,118 @@
+{
+  "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+  "name": "Nomo",
+  "scopeName": "source.nomo",
+  "patterns": [
+    { "include": "#comments" },
+    { "include": "#strings" },
+    { "include": "#keywords" },
+    { "include": "#constants" },
+    { "include": "#numbers" },
+    { "include": "#types" },
+    { "include": "#functions" },
+    { "include": "#variants" }
+  ],
+  "repository": {
+    "comments": {
+      "patterns": [
+        {
+          "name": "comment.line.double-slash.nomo",
+          "match": "//.*$"
+        }
+      ]
+    },
+    "strings": {
+      "patterns": [
+        {
+          "name": "string.quoted.double.nomo",
+          "begin": "\"",
+          "end": "\"",
+          "patterns": [
+            {
+              "name": "constant.character.escape.nomo",
+              "match": "\\\\."
+            }
+          ]
+        },
+        {
+          "name": "string.quoted.single.nomo",
+          "match": "'(\\\\.|[^'\\\\])'"
+        }
+      ]
+    },
+    "keywords": {
+      "patterns": [
+        {
+          "name": "keyword.control.nomo",
+          "match": "\\b(if|else|match|for|in|return|defer|break|continue|panic)\\b"
+        },
+        {
+          "name": "keyword.declaration.nomo",
+          "match": "\\b(package|import|pub|fn|struct|enum|impl|let|mut|const)\\b"
+        },
+        {
+          "name": "keyword.operator.cast.nomo",
+          "match": "\\bas\\b"
+        }
+      ]
+    },
+    "constants": {
+      "patterns": [
+        {
+          "name": "constant.language.nomo",
+          "match": "\\b(true|false|void|self|null)\\b"
+        }
+      ]
+    },
+    "numbers": {
+      "patterns": [
+        {
+          "name": "constant.numeric.float.nomo",
+          "match": "\\b[0-9]+\\.[0-9]+\\b"
+        },
+        {
+          "name": "constant.numeric.integer.nomo",
+          "match": "\\b[0-9]+\\b"
+        }
+      ]
+    },
+    "types": {
+      "patterns": [
+        {
+          "name": "support.type.primitive.nomo",
+          "match": "\\b(bool|i32|i64|u32|u64|f64|char|string|void)\\b"
+        },
+        {
+          "name": "entity.name.type.nomo",
+          "match": "\\b[A-Z][A-Za-z0-9_]*\\b"
+        }
+      ]
+    },
+    "functions": {
+      "patterns": [
+        {
+          "match": "\\b(fn)\\s+([a-z_][A-Za-z0-9_]*)",
+          "captures": {
+            "1": { "name": "keyword.declaration.nomo" },
+            "2": { "name": "entity.name.function.nomo" }
+          }
+        },
+        {
+          "name": "entity.name.function.call.nomo",
+          "match": "\\b([a-z_][A-Za-z0-9_]*)\\s*(?=\\()"
+        }
+      ]
+    },
+    "variants": {
+      "patterns": [
+        {
+          "match": "\\b([A-Z][A-Za-z0-9_]*)\\.([A-Z][A-Za-z0-9_]*)",
+          "captures": {
+            "1": { "name": "entity.name.type.nomo" },
+            "2": { "name": "variable.other.enummember.nomo" }
+          }
+        }
+      ]
+    }
+  }
+}
