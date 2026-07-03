@@ -6,6 +6,7 @@ VS Code support for the [Nomo](https://github.com/nomo-lang) programming languag
 
 - Real-time diagnostics from the Nomo compiler
 - Keyword completion
+- Hover, go-to-definition, references and rename through `nomo-lsp`
 - Document formatting through `nomo-lsp`
 - Syntax highlighting (TextMate grammar) plus semantic highlighting from the language server
 
