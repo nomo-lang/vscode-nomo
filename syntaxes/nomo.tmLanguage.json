@@ -6,6 +6,7 @@
     { "include": "#comments" },
     { "include": "#strings" },
     { "include": "#keywords" },
+    { "include": "#operators" },
     { "include": "#constants" },
     { "include": "#numbers" },
     { "include": "#types" },
@@ -59,8 +60,23 @@
     "constants": {
       "patterns": [
         {
+          "match": "\\b(const)\\s+([A-Z_][A-Za-z0-9_]*)",
+          "captures": {
+            "1": { "name": "keyword.declaration.nomo" },
+            "2": { "name": "constant.other.nomo" }
+          }
+        },
+        {
           "name": "constant.language.nomo",
-          "match": "\\b(true|false|void|self|null)\\b"
+          "match": "\\b(true|false|void|self)\\b"
+        }
+      ]
+    },
+    "operators": {
+      "patterns": [
+        {
+          "name": "keyword.operator.nomo",
+          "match": "==|!=|<=|>=|->|=>|\\?|\\+|\\*|=|<|>"
         }
       ]
     },
