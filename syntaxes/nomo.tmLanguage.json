@@ -50,11 +50,11 @@
       "patterns": [
         {
           "name": "keyword.control.nomo",
-          "match": "\\b(if|else|match|for|in|return|defer|break|continue|panic)\\b"
+          "match": "\\b(if|else|match|for|in|return|defer|unsafe|break|continue|panic)\\b"
         },
         {
           "name": "keyword.declaration.nomo",
-          "match": "\\b(package|import|pub|fn|struct|enum|impl|let|mut|const)\\b"
+          "match": "\\b(package|import|pub|fn|struct|enum|interface|impl|extern|let|mut|const)\\b"
         },
         {
           "name": "keyword.operator.cast.nomo",
