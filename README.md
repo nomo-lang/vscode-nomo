@@ -6,9 +6,9 @@ VS Code support for the [Nomo](https://github.com/nomo-lang) programming languag
 
 - Real-time diagnostics from the Nomo compiler
 - Keyword, import path and semantic symbol completion
-- Hover, workspace symbols, go-to-definition, references and rename through `nomo-lsp`
-- Quick-fix code actions through `nomo-lsp`
-- Inlay hints for inferred `let` binding types through `nomo-lsp`
+- Hover, document symbols, workspace symbols, go-to-definition, references and rename through `nomo-lsp`
+- Quick-fix code actions for compiler suggestions, missing imports and module/package mismatches through `nomo-lsp`
+- Inlay hints for inferred `let` binding types and same-file function/method parameter names through `nomo-lsp`
 - Document formatting through `nomo-lsp`
 - Syntax highlighting (TextMate grammar) plus semantic highlighting from the language server
 
