@@ -4,6 +4,7 @@
   "scopeName": "source.nomo",
   "patterns": [
     { "include": "#comments" },
+    { "include": "#attributes" },
     { "include": "#strings" },
     { "include": "#keywords" },
     { "include": "#operators" },
@@ -14,6 +15,19 @@
     { "include": "#variants" }
   ],
   "repository": {
+    "attributes": {
+      "patterns": [
+        {
+          "match": "(#)(\\[)([a-z_][A-Za-z0-9_]*)(\\])",
+          "captures": {
+            "1": { "name": "punctuation.definition.attribute.nomo" },
+            "2": { "name": "punctuation.section.brackets.begin.nomo" },
+            "3": { "name": "entity.other.attribute-name.nomo" },
+            "4": { "name": "punctuation.section.brackets.end.nomo" }
+          }
+        }
+      ]
+    },
     "comments": {
       "patterns": [
         {
