@@ -9,6 +9,20 @@
     "type": "git",
     "url": "https://github.com/nomo-lang/vscode-nomo.git"
   },
+  "homepage": "https://github.com/nomo-lang/vscode-nomo#readme",
+  "bugs": {
+    "url": "https://github.com/nomo-lang/vscode-nomo/issues"
+  },
+  "keywords": [
+    "nomo",
+    "language-server",
+    "lsp",
+    "programming-language"
+  ],
+  "galleryBanner": {
+    "color": "#202733",
+    "theme": "dark"
+  },
   "engines": {
     "vscode": "^1.75.0"
   },
@@ -65,7 +79,9 @@
     "vscode:prepublish": "npm run build",
     "build": "esbuild src/extension.ts --bundle --outfile=dist/extension.js --external:vscode --format=cjs --platform=node",
     "watch": "npm run build -- --sourcemap --watch",
-    "package": "vsce package"
+    "package": "vsce package",
+    "publish:marketplace": "vsce publish",
+    "publish:openvsx": "ovsx publish"
   },
   "dependencies": {
     "vscode-languageclient": "^9.0.1"
@@ -75,6 +91,7 @@
     "@types/vscode": "^1.75.0",
     "@vscode/vsce": "^3.0.0",
     "esbuild": "^0.28.1",
+    "ovsx": "^1.0.2",
     "typescript": "^5.4.0"
   }
 }
