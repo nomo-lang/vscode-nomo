@@ -19,11 +19,12 @@ All language intelligence is provided by the [`nomo-lsp`](https://github.com/nom
 Install the language server archive for your platform from the
 [`nomo-lsp` releases](https://github.com/nomo-lang/nomo-lsp/releases), extract
 it, and place the executable on your `PATH`. To build it from source, clone
-`nomo` and `nomo-lsp` as sibling repositories, then run:
+the `nomo-lsp` repository, then run:
 
 ```bash
-cd ../nomo-lsp
-cargo install --path .
+git clone https://github.com/nomo-lang/nomo-lsp.git
+cd nomo-lsp
+cargo install --path . --locked
 ```
 
 Alternatively set `nomo.lsp.path` in your settings to the absolute path of the `nomo-lsp` binary.
