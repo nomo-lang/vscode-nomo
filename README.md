@@ -36,7 +36,7 @@ matching GitHub release. Install it from the Extensions view with **Install from
 VSIX**, or from a terminal:
 
 ```bash
-code --install-extension vscode-nomo-0.1.0.vsix
+code --install-extension vscode-nomo-<version>.vsix
 ```
 
 Marketplace publication uses the extension identifier
@@ -64,4 +64,6 @@ npm run package
 ```
 
 `npm run package` produces a universal VSIX. Publishing is tag-driven; a tag
-must exactly match the `package.json` version, such as `v0.1.0`.
+must exactly match the `package.json` version. Timestamped
+`v0.0.0-YYYYMMDDHHMMSS` tags publish prerelease VSIX builds; stable tags publish
+normal extension releases.

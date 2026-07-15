@@ -5,12 +5,13 @@ import {
   ServerOptions,
   TransportKind,
 } from "vscode-languageclient/node";
+import { resolveServerPath } from "./server-config";
 
 let client: LanguageClient | undefined;
 
 export function activate(context: vscode.ExtensionContext): void {
   const config = vscode.workspace.getConfiguration("nomo");
-  const serverPath = config.get<string>("lsp.path", "nomo-lsp");
+  const serverPath = resolveServerPath(config.get<string>("lsp.path"));
 
   const serverOptions: ServerOptions = {
     run: { command: serverPath, transport: TransportKind.stdio },

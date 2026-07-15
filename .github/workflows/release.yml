@@ -26,6 +26,9 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Test server launch and language contracts
+        run: npm test
+
       - name: Validate tag version
         if: startsWith(github.ref, 'refs/tags/v')
         shell: bash
@@ -41,7 +44,11 @@ jobs:
         run: |
           version=$(node -p "require('./package.json').version")
           mkdir -p release
-          npm run package -- --out "release/vscode-nomo-$version.vsix"
+          prerelease_args=()
+          if [[ "$version" == 0.0.0-* ]]; then
+            prerelease_args+=(--pre-release)
+          fi
+          npm run package -- "${prerelease_args[@]}" --out "release/vscode-nomo-$version.vsix"
 
       - name: Upload VSIX
         uses: actions/upload-artifact@v7
@@ -69,12 +76,17 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         shell: bash
         run: |
+          prerelease_args=()
+          if [[ "$GITHUB_REF_NAME" == v0.0.0-* ]]; then
+            prerelease_args+=(--prerelease)
+          fi
           if gh release view "$GITHUB_REF_NAME" --repo "$GITHUB_REPOSITORY" >/dev/null 2>&1; then
             gh release upload "$GITHUB_REF_NAME" release/* --clobber --repo "$GITHUB_REPOSITORY"
           else
             gh release create "$GITHUB_REF_NAME" release/* \
               --generate-notes \
               --verify-tag \
+              "${prerelease_args[@]}" \
               --title "Nomo for VS Code $GITHUB_REF_NAME" \
               --repo "$GITHUB_REPOSITORY"
           fi
@@ -108,7 +120,13 @@ jobs:
       - name: Publish to Visual Studio Marketplace
         if: env.VSCE_PAT != ''
         shell: bash
-        run: npm run publish:marketplace -- --packagePath release/*.vsix -p "$VSCE_PAT"
+        run: |
+          version=$(node -p "require('./package.json').version")
+          prerelease_args=()
+          if [[ "$version" == 0.0.0-* ]]; then
+            prerelease_args+=(--pre-release)
+          fi
+          npm run publish:marketplace -- "${prerelease_args[@]}" --packagePath release/*.vsix -p "$VSCE_PAT"
 
       - name: Skip Marketplace publication without credentials
         if: env.VSCE_PAT == ''

@@ -3,6 +3,8 @@
 .gitignore
 node_modules/**
 src/**
+test/**
+dist-test/**
 tsconfig.json
 package-lock.json
 *.vsix

@@ -2,7 +2,7 @@
   "name": "vscode-nomo",
   "displayName": "Nomo",
   "description": "Nomo language support: diagnostics, completion, formatting and syntax highlighting via the Nomo language server.",
-  "version": "0.1.0",
+  "version": "0.0.0-20260713145859",
   "publisher": "nomo-lang",
   "license": "MIT",
   "repository": {
@@ -78,6 +78,8 @@
   "scripts": {
     "vscode:prepublish": "npm run build",
     "build": "esbuild src/extension.ts --bundle --outfile=dist/extension.js --external:vscode --format=cjs --platform=node",
+    "build:test": "esbuild src/server-config.ts --bundle --outfile=dist-test/server-config.js --format=cjs --platform=node",
+    "test": "npm run build:test && node --test",
     "watch": "npm run build -- --sourcemap --watch",
     "package": "vsce package",
     "publish:marketplace": "vsce publish",
