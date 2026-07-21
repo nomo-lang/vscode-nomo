@@ -63,6 +63,9 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: write
+      id-token: write
+      attestations: write
+      artifact-metadata: write
 
     steps:
       - name: Download VSIX
@@ -70,6 +73,15 @@ jobs:
         with:
           name: vscode-nomo-vsix
           path: release
+
+      - name: Generate checksum
+        working-directory: release
+        run: sha256sum *.vsix > SHA256SUMS
+
+      - name: Attest release artifact
+        uses: actions/attest@v4
+        with:
+          subject-path: release/*.vsix
 
       - name: Create or update GitHub release
         env:
