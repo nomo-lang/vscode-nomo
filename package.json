@@ -2,7 +2,7 @@
   "name": "vscode-nomo",
   "displayName": "Nomo",
   "description": "Nomo language support: diagnostics, completion, formatting and syntax highlighting via the Nomo language server.",
-  "version": "0.0.0-20260720080715",
+  "version": "0.0.0-20260721120555",
   "publisher": "nomo-lang",
   "license": "MIT",
   "repository": {
