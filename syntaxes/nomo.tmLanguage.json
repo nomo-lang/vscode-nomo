@@ -68,7 +68,7 @@
         },
         {
           "name": "keyword.declaration.nomo",
-          "match": "\\b(package|import|pub|fn|struct|enum|interface|impl|extern|let|mut|const)\\b"
+          "match": "\\b(package|import|pub|suspend|fn|struct|enum|interface|impl|extern|let|mut|const)\\b"
         },
         {
           "name": "keyword.operator.cast.nomo",
