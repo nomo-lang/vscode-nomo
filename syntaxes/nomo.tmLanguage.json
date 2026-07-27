@@ -63,6 +63,10 @@
     "keywords": {
       "patterns": [
         {
+          "name": "keyword.declaration.nomo",
+          "match": "\\btask(?=\\s+fn\\b)"
+        },
+        {
           "name": "keyword.control.nomo",
           "match": "\\b(if|else|match|for|in|return|defer|unsafe|break|continue|panic)\\b"
         },
