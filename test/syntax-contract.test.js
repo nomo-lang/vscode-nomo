@@ -19,7 +19,9 @@ function pattern(name) {
 test("TextMate grammar recognizes canonical implicit-void declarations", () => {
   const declaration = new RegExp(
     pattern("keywords").find(
-      (entry) => entry.name === "keyword.declaration.nomo",
+      (entry) =>
+        entry.name === "keyword.declaration.nomo" &&
+        entry.match.includes("package"),
     ).match,
   );
   const functionDeclaration = new RegExp(pattern("functions")[0].match);
@@ -33,9 +35,12 @@ test("TextMate grammar recognizes canonical implicit-void declarations", () => {
 test("TextMate grammar keeps callable and Result void syntax visible", () => {
   const operator = new RegExp(pattern("operators")[0].match);
   const primitive = new RegExp(pattern("types")[0].match, "g");
+  const taskCallable = new RegExp(pattern("keywords")[0].match);
   const source =
     "fn register(callback: task fn(string) -> void) -> Result<void, string>";
 
+  assert.equal(taskCallable.exec(source)[0], "task");
+  assert.equal(taskCallable.test("let task = worker"), false);
   assert.equal(operator.exec(source)[0], "->");
   assert.deepEqual(
     [...source.matchAll(primitive)].map((match) => match[0]),
